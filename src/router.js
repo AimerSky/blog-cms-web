@@ -44,26 +44,59 @@ const router = new Router({
         {
           path: '/page2',
           name: 'page2',
+          pageTitle: 'Page2',
           component: () => import('./views/Page2.vue')
         },
         {
           path: '/ManagerList',
           name: 'manager_list',
+          meta: {
+            breadcrumb: [
+              { title: '首页', url: '/' },
+              { title: '权限', url: '/ManagerList'},
+              { title: '管理员列表', active: true },
+            ],
+            pageTitle: '管理员列表'
+          },
           component: () => import('./views/pages/limit/ManagerList.vue')
         },
         {
           path: '/MenuList',
           name: 'menu_list',
+          meta: {
+            breadcrumb: [
+              { title: '首页', url: '/' },
+              { title: '权限', url: '/MenuList'},
+              { title: '菜单列表', active: true },
+            ],
+            pageTitle: '菜单列表'
+          },
           component: () => import('./views/pages/limit/MenuList.vue')
         },
         {
           path: '/ResourceList',
           name: 'resource_list',
+          meta: {
+            breadcrumb: [
+              { title: '首页', url: '/' },
+              { title: '权限', url: '/ResourceList'},
+              { title: '资源列表', active: true },
+            ],
+            pageTitle: '资源列表'
+          },
           component: () => import('./views/pages/limit/ResourceList.vue')
         },
         {
           path: '/RoleList',
           name: 'role_list',
+          meta: {
+            breadcrumb: [
+              { title: '首页', url: '/' },
+              { title: '权限', url: '/RoleList'},
+              { title: '角色列表', active: true },
+            ],
+            pageTitle: '角色列表'
+          },
           component: () => import('./views/pages/limit/RoleList.vue')
         },
       ],
