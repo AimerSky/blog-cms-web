@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: KnowledgeBaseCategoryQuestion.vue
     Description: Knowledge Base Question - Answer Article
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 <template>

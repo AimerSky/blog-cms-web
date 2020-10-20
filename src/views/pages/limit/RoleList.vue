@@ -1,17 +1,18 @@
 <template>
   <vx-card>
-    <div class="demo-alignment ">
+    <div class="flex ">
+      <vs-button @click="addRoleDetail" type="relief">添加</vs-button>
       <vs-input class="inputx ml-auto" v-model="searchValue" placeholder=""/>
-      <vs-button @click="Search" type="relief">搜索</vs-button>
+      <vs-button @click="search" type="relief" class="ml-6">搜索</vs-button>
     </div>
 
     <vs-table stripe :data="roleList" class="mt-6">
-
       <template slot="thead">
         <vs-th>编号</vs-th>
         <vs-th>名称</vs-th>
         <vs-th>后台用户数量</vs-th>
         <vs-th>状态</vs-th>
+        <vs-th>操作</vs-th>
       </template>
 
       <template slot-scope="{data}">
@@ -29,13 +30,22 @@
           </vs-td>
 
           <vs-td :data="data[indextr].status">
-            {{ data[indextr].status }}
+            {{ data[indextr].status == 1 ? "正常" : '禁用' }}
+          </vs-td>
+
+          <vs-td>
+            <div class="flex">
+              <!-- <vs-button radius color="primary" type="line" icon-pack="feather" size="small" icon="icon-plus"></vs-button>-->
+              <vs-button radius color="primary" type="line" icon-pack="feather" size="small"
+                         icon="icon-edit-2"></vs-button>
+              <vs-button radius color="primary" type="line" icon-pack="feather" size="small" icon="icon-x"></vs-button>
+            </div>
           </vs-td>
         </vs-tr>
       </template>
     </vs-table>
 
-    <div class="my-5" @click="TurnPage">
+    <div class="my-5" @click="turnPage">
       <vs-pagination :total="totalPage" v-model="pageNum"></vs-pagination>
     </div>
 
@@ -74,12 +84,18 @@ export default {
       });
 
     },
-    TurnPage() {
+    turnPage() {
       this.getRoleList();
 
     },
-    Search() {
+    search() {
       this.getRoleList();
+    },
+    addRoleDetail() {
+      this.$router.push({path: '/RoleDetail', query: {editState: '1'}});
+    },
+    editRoleDetail() {
+      this.$router.push({path: '/RoleDetail', query: {editState: '2'}});
     }
   },
 }

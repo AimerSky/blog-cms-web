@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: KnowledgeBase.vue
     Description: Knowledge Base Page
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -28,7 +24,7 @@
                         <small>{{ item.description }}</small>
                     </vx-card>
                 </div>
-            </div>  
+            </div>
     </div>
 </template>
 
@@ -49,7 +45,7 @@ export default{
         }
     },
     computed: {
-        filteredKB() { 
+        filteredKB() {
             return this.kb.filter((item) => item.title.toLowerCase().includes(this.knowledgeBaseSearchQuery.toLowerCase()) || item.description.toLowerCase().includes(this.knowledgeBaseSearchQuery.toLowerCase()));
         }
     },

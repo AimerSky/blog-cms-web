@@ -1,10 +1,6 @@
 <!-- =========================================================================================
     File Name: Search.vue
     Description: Search Page
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -312,5 +308,5 @@ export default{
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/vuesax/pages/search.scss";
+@import "../../assets/scss/vuesax/pages/search.scss";
 </style>

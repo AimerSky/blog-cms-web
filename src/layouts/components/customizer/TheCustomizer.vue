@@ -2,10 +2,6 @@
     File Name: TheCustomizer.vue
     Description: Template Customizer
     Component Name: TheCustomizer
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 <template>

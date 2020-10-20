@@ -1,17 +1,13 @@
 <!-- =========================================================================================
     File Name: Main.vue
     Description: Main layout
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-    Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
 <template>
   <div class="layout--main" :class="[navbarClasses, footerClasses, {'app-page': isAppPage}]">
 
-    <vx-sidebar :sidebarItems="sidebarItems" :logo="require('@/assets/images/logo/logo.png')" title="Vuesax"
+    <vx-sidebar :sidebarItems="sidebarItems" :logo="require('@/assets/images/logo/logo.png')" title="Blog-CMS"
                 parent=".layout--main"/>
 
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">

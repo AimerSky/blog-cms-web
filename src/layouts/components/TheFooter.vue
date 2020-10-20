@@ -2,10 +2,6 @@
     File Name: TheFooter.vue
     Description: Footer component
     Component Name: TheFooter
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 

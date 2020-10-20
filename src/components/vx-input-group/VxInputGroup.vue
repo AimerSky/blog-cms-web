@@ -33,5 +33,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/vuesax/components/vxInputGroup.scss";
+@import "../../assets/scss/vuesax/components/vxInputGroup.scss";
 </style>

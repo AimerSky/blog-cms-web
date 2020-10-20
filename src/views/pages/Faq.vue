@@ -1,10 +1,6 @@
 ]<!-- =========================================================================================
     File Name: Faq.vue
     Description: FAQ Page
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 
@@ -53,7 +49,7 @@
                         <p>{{ que.ans }}</p>
                     </vs-collapse-item>
                 </vs-collapse>
-                
+
             </div>
         </div>
     </div>
@@ -208,7 +204,7 @@ export default{
         }
     },
     computed: {
-        filteredFaq() { 
+        filteredFaq() {
             return this.faqs.filter((faq) => {
                 if (this.faqFilter == 1) return (faq.question.toLowerCase().includes(this.faqSearchQuery.toLowerCase()) || faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase()));
                 else if (this.faqFilter == 2) return faq.categoryId == 2 && (faq.question.toLowerCase().includes(this.faqSearchQuery.toLowerCase()) || faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase()));
@@ -234,6 +230,6 @@ export default{
 
     .faq-bg {
         background-color: #fff;
-    }   
+    }
 }
 </style>

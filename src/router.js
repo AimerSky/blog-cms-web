@@ -44,7 +44,6 @@ const router = new Router({
         {
           path: '/page2',
           name: 'page2',
-          pageTitle: 'Page2',
           component: () => import('./views/Page2.vue')
         },
         {
@@ -98,6 +97,11 @@ const router = new Router({
             pageTitle: '角色列表'
           },
           component: () => import('./views/pages/limit/RoleList.vue')
+        },
+        {
+          path: '/RoleDetail',
+          name: 'role_detail',
+          component: () => import('./views/pages/limit/RoleDetail.vue')
         },
       ],
     },
