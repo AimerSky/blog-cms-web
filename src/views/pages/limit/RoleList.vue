@@ -1,6 +1,6 @@
 <template>
   <vx-card>
-    <div class="flex ">
+    <div class="flex">
       <vs-button @click="addRoleDetail" type="relief">添加</vs-button>
       <vs-input class="inputx ml-auto" v-model="searchValue" placeholder=""/>
       <vs-button @click="search" type="relief" class="ml-6">搜索</vs-button>
@@ -35,10 +35,10 @@
 
           <vs-td>
             <div class="flex">
-              <!-- <vs-button radius color="primary" type="line" icon-pack="feather" size="small" icon="icon-plus"></vs-button>-->
               <vs-button radius color="primary" type="line" icon-pack="feather" size="small"
-                         icon="icon-edit-2"></vs-button>
-              <vs-button radius color="primary" type="line" icon-pack="feather" size="small" icon="icon-x"></vs-button>
+                         icon="icon-edit-2" @click="editRoleDetail(data[indextr].roleId)"></vs-button>
+              <vs-button radius color="primary" type="line" @click="deleteRole(data[indextr].roleId)"
+                         icon-pack="feather" size="small" icon="icon-x"></vs-button>
             </div>
           </vs-td>
         </vs-tr>
@@ -74,12 +74,18 @@ export default {
         keyword: this.searchValue
       }).then(response => {
         if (response.code === 10000) {
+          this.totalPage = response.data.totalPage;
           if (response.data.list) {
             this.roleList = response.data.list;
-          } else {
-            this.roleList = [];
+            return
           }
-          this.totalPage = response.data.totalPage;
+          //判断非第一页最后一条数据删除null
+          if (response.pageNum != 1) {
+            this.pageNum -= 1;
+            this.getRoleList();
+          }
+
+          this.roleList = [];
         }
       });
 
@@ -91,11 +97,20 @@ export default {
     search() {
       this.getRoleList();
     },
+    deleteRole(roleId) {
+      this.$http.post('/cms/role/deletebyid', {
+        roleId: roleId
+      }).then(response => {
+        if (response.code === 10000) {
+          this.getRoleList();
+        }
+      });
+    },
     addRoleDetail() {
       this.$router.push({path: '/RoleDetail', query: {editState: '1'}});
     },
-    editRoleDetail() {
-      this.$router.push({path: '/RoleDetail', query: {editState: '2'}});
+    editRoleDetail(roleId) {
+      this.$router.push({path: '/RoleDetail', query: {editState: '2', id: roleId}});
     }
   },
 }

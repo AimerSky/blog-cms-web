@@ -39,6 +39,7 @@ export default {
   mounted() {
     this.toggleClassInBody(themeConfig.theme)
     this.$nextTick(() => {
+
       window.addEventListener('resize', this.handleWindowResize);
     });
     this.$store.dispatch('updateWindowWidth', window.innerWidth);
