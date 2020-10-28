@@ -51,9 +51,9 @@ const router = new Router({
           name: 'manager_list',
           meta: {
             breadcrumb: [
-              { title: '首页', url: '/' },
-              { title: '权限', url: '/ManagerList'},
-              { title: '管理员列表', active: true },
+              {title: '首页', url: '/'},
+              {title: '权限', url: '/ManagerList'},
+              {title: '管理员列表', active: true},
             ],
             pageTitle: '管理员列表'
           },
@@ -64,9 +64,9 @@ const router = new Router({
           name: 'menu_list',
           meta: {
             breadcrumb: [
-              { title: '首页', url: '/' },
-              { title: '权限', url: '/MenuList'},
-              { title: '菜单列表', active: true },
+              {title: '首页', url: '/'},
+              {title: '权限', url: '/MenuList'},
+              {title: '菜单列表', active: true},
             ],
             pageTitle: '菜单列表'
           },
@@ -77,9 +77,9 @@ const router = new Router({
           name: 'resource_list',
           meta: {
             breadcrumb: [
-              { title: '首页', url: '/' },
-              { title: '权限', url: '/ResourceList'},
-              { title: '资源列表', active: true },
+              {title: '首页', url: '/'},
+              {title: '权限', url: '/ResourceList'},
+              {title: '资源列表', active: true},
             ],
             pageTitle: '资源列表'
           },
@@ -90,9 +90,9 @@ const router = new Router({
           name: 'role_list',
           meta: {
             breadcrumb: [
-              { title: '首页', url: '/' },
-              { title: '权限', url: '/RoleList'},
-              { title: '角色列表', active: true },
+              {title: '首页', url: '/'},
+              {title: '权限', url: '/RoleList'},
+              {title: '角色列表', active: true},
             ],
             pageTitle: '角色列表'
           },
@@ -229,6 +229,7 @@ router.beforeEach((to, from, next) => {
   ) {
     return next();
   }
+
 
 
   //判断有没有登入

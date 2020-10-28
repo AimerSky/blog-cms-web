@@ -37,7 +37,7 @@
             <div class="flex">
               <vs-button radius color="primary" type="line" icon-pack="feather" size="small"
                          icon="icon-edit-2" @click="editRoleDetail(data[indextr].roleId)"></vs-button>
-              <vs-button radius color="primary" type="line" @click="deleteRole(data[indextr].roleId)"
+              <vs-button radius color="primary" type="line" @click="openConfirm(data[indextr].roleId)"
                          icon-pack="feather" size="small" icon="icon-x"></vs-button>
             </div>
           </vs-td>
@@ -111,7 +111,20 @@ export default {
     },
     editRoleDetail(roleId) {
       this.$router.push({path: '/RoleDetail', query: {editState: '2', id: roleId}});
-    }
+    },
+    openConfirm() {
+      this.$vs.dialog({
+        type: 'confirm',
+        color: 'danger',
+        title: `消息确认`,
+        text: '删除该角色会把下面的账号全部清除，你确定要这么做吗？',
+        accept: this.acceptAlert
+      })
+    },
+    acceptAlert() {
+      alert(1);
+    },
+
   },
 }
 </script>

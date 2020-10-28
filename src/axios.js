@@ -42,6 +42,7 @@ service.interceptors.response.use(res => {
       alert(res.data.message);
     }
     return res.data
+
   },
   error => {
     alert('请求失败，请稍后重试！');

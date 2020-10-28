@@ -37,6 +37,11 @@ import router from './router'
 import store from './store/store'
 
 
+// Tour
+import VueTour from 'vue-tour'
+Vue.use(VueTour)
+require('vue-tour/dist/vue-tour.css')
+
 // Vuesax Admin Filters
 import './filters/filters'
 
