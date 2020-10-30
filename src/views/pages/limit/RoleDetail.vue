@@ -26,10 +26,10 @@
       <div class="w-full sm:w-1/2 ">
         <ul class="centerx flex">
           <li>
-            <vs-radio v-model="role.status" vs-value="1">启动</vs-radio>
+            <vs-radio v-model="role.state" vs-value="1">启动</vs-radio>
           </li>
           <li class="ml-6">
-            <vs-radio v-model="role.status" vs-value="2">禁止</vs-radio>
+            <vs-radio v-model="role.state" vs-value="2">禁止</vs-radio>
           </li>
         </ul>
       </div>
@@ -55,7 +55,7 @@
 export default {
   data() {
     return {
-      role: {status: 1},
+      role: {state: 1},
     }
   },
   mounted() {

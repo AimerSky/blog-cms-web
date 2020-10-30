@@ -29,8 +29,8 @@
             {{ data[indextr].managerCount }}
           </vs-td>
 
-          <vs-td :data="data[indextr].status">
-            {{ data[indextr].status == 1 ? "正常" : '禁用' }}
+          <vs-td :data="data[indextr].state">
+            {{ data[indextr].state == 1 ? "正常" : '禁用' }}
           </vs-td>
 
           <vs-td>
@@ -60,7 +60,8 @@ export default {
       pageNum: 1,
       pageSize: 10,
       searchValue: "",
-      roleList: []
+      roleList: [],
+      deleteRoleId: 0
     }
   },
   mounted() {
@@ -92,14 +93,13 @@ export default {
     },
     turnPage() {
       this.getRoleList();
-
     },
     search() {
       this.getRoleList();
     },
-    deleteRole(roleId) {
+    deleteRole() {
       this.$http.post('/cms/role/deletebyid', {
-        roleId: roleId
+        roleId: this.deleteRoleId
       }).then(response => {
         if (response.code === 10000) {
           this.getRoleList();
@@ -112,18 +112,18 @@ export default {
     editRoleDetail(roleId) {
       this.$router.push({path: '/RoleDetail', query: {editState: '2', id: roleId}});
     },
-    openConfirm() {
+    openConfirm(roleId) {
+      this.deleteRoleId = roleId;
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
         title: `消息确认`,
-        text: '删除该角色会把下面的账号全部清除，你确定要这么做吗？',
-        accept: this.acceptAlert
+        text: '删除该角色会把下面的角色账号关联关系删除，你确定要这么做吗？',
+        acceptText: "确认",
+        cancelText: "取消",
+        accept: this.deleteRole
       })
-    },
-    acceptAlert() {
-      alert(1);
-    },
+    }
 
   },
 }
