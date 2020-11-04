@@ -12,6 +12,7 @@
 
 <script>
 import themeConfig from '@/../themeConfig.js'
+import './vee-validate'
 
 export default {
   watch: {

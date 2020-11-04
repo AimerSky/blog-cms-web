@@ -60,6 +60,11 @@ const router = new Router({
           component: () => import('./views/pages/limit/ManagerList.vue')
         },
         {
+          path: '/ManagerDetail',
+          name: 'manager_detail',
+          component: () => import('./views/pages/limit/ManagerDetail.vue')
+        },
+        {
           path: '/MenuList',
           name: 'menu_list',
           meta: {

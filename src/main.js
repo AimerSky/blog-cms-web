@@ -63,6 +63,8 @@ require('./assets/css/iconfont.css');
 import axios from "./axios.js"
 Vue.prototype.$http = axios;
 
+import Validate from './vee-validate'
+Vue.use(Validate)
 
 Vue.config.productionTip = false
 
