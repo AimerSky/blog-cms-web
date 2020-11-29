@@ -86,6 +86,11 @@ export default {
     create() {
       this.$http.post('/cms/role/create', this.role).then(response => {
         if (response.code === 10000) {
+          this.$vs.notify({
+            title: '提示信息',
+            text: '保存成功！',
+            color: 'success'
+          })
           this.$router.go(-1);
         }
       });
@@ -93,6 +98,11 @@ export default {
     update() {
       this.$http.post('/cms/role/update', this.role).then(response => {
         if (response.code === 10000) {
+          this.$vs.notify({
+            title: '提示信息',
+            text: '保存成功！',
+            color: 'success'
+          })
           this.$router.go(-1);
         }
       });

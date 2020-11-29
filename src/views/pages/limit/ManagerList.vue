@@ -42,6 +42,8 @@
             <div class="flex">
               <vs-button radius color="primary" type="line" icon-pack="feather" size="small"
                          icon="icon-edit-2" @click="editManagerDetail(data[indextr].managerId)"></vs-button>
+              <!--<vs-button radius color="primary" type="line"
+                         icon-pack="feather" size="small" icon="icon-users"></vs-button>-->
               <vs-button radius color="primary" type="line" @click="openConfirm(data[indextr].managerId)"
                          icon-pack="feather" size="small" icon="icon-x"></vs-button>
             </div>
@@ -104,13 +106,13 @@ export default {
       this.getManagerList();
     },
     deleteManager() {
-      /*this.$http.post('/cms/role/deletebyid', {
-        roleId: this.deleteRoleId
+      this.$http.post('/cms/manager/deleteById', {
+        managerId: this.deleteManagerId
       }).then(response => {
-        if (response.code === 10000) {
-          this.getRoleList();
+        if (response.code == 10000) {
+          this.getManagerList();
         }
-      });*/
+      });
     },
     addManagerDetail() {
       this.$router.push({path: '/ManagerDetail', query: {editState: '1'}});

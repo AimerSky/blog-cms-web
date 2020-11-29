@@ -17,49 +17,46 @@
       </ValidationProvider>
 
       <ValidationProvider name="名称" rules="required|min:2" v-slot="{ errors }">
-      <div class="flex mt-4">
-        <div class="vs-lg-2 ml-32">
-          <label>名称：</label>
+        <div class="flex mt-4">
+          <div class="vs-lg-2 ml-32">
+            <label>名称：</label>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <vs-input class="w-full" maxlength="100" v-model="manager.name"></vs-input>
+          </div>
+          <div class="flex mt-2">
+            <span class="text-danger text-sm ml-6">{{ errors[0] }}</span>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2">
-          <vs-input class="w-full" maxlength="100" v-model="manager.name"></vs-input>
-        </div>
-        <div class="flex mt-2">
-          <span class="text-danger text-sm ml-6">{{ errors[0] }}</span>
-        </div>
-      </div>
       </ValidationProvider>
 
       <ValidationProvider name="昵称" rules="required" v-slot="{ errors }">
-      <div class="flex mt-4">
-        <div class="vs-lg-2 ml-32">
-          <label>昵称：</label>
+        <div class="flex mt-4">
+          <div class="vs-lg-2 ml-32">
+            <label>昵称：</label>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <vs-input class="w-full" maxlength="100" v-model="manager.nickname"></vs-input>
+          </div>
+          <div class="flex mt-2">
+            <span class="text-danger text-sm ml-6">{{ errors[0] }}</span>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2">
-          <vs-input class="w-full" maxlength="100" v-model="manager.nickname"></vs-input>
-        </div>
-        <div class="flex mt-2">
-          <span class="text-danger text-sm ml-6">{{ errors[0] }}</span>
-        </div>
-      </div>
       </ValidationProvider>
 
-
-      <div class="flex mt-4">
-        <div class="vs-lg-2 ml-32">
-          <label>状态：</label>
+      <ValidationProvider name=" " rules="email" v-slot="{ errors }">
+        <div class="flex mt-4">
+          <div class="vs-lg-2 ml-32">
+            <label>邮箱：</label>
+          </div>
+          <div class="w-full sm:w-1/2">
+            <vs-input class="w-full" maxlength="100" v-model="manager.email"></vs-input>
+          </div>
+          <div class="flex mt-2">
+            <span class="text-danger text-sm ml-6">{{ errors[0] }}</span>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2 ">
-          <ul class="centerx flex">
-            <li>
-              <vs-radio v-model="manager.state" vs-value="2">正常</vs-radio>
-            </li>
-            <li class="ml-6">
-              <vs-radio v-model="manager.state" vs-value="3">停用</vs-radio>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </ValidationProvider>
 
       <div class="flex mt-4">
         <div class="vs-lg-2 ml-32">
@@ -70,16 +67,39 @@
         </div>
       </div>
 
-      <div class="flex mt-4">
+      <div class="flex mt-6">
         <div class="vs-lg-2 ml-32">
-          <label>邮箱：</label>
+          <label>状态：</label>
         </div>
-        <div class="w-full sm:w-1/2">
-          <vs-input class="w-full" maxlength="100" v-model="manager.email"></vs-input>
+        <div class="w-full sm:w-1/2 ml-1">
+          <ul class="flex ">
+            <li>
+              <vs-radio v-model="manager.state" vs-value="2">正常</vs-radio>
+            </li>
+            <li class="ml-6">
+              <vs-radio v-model="manager.state" vs-value="3">停用</vs-radio>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="flex mt-4">
+      <div class="flex ">
+        <div class="vs-lg-2 ml-32 mt-6">
+          <label>角色：</label>
+        </div>
+        <div class="w-full sm:w-1/2">
+          <ul class="demo-alignment">
+            <li :key="role.id" v-for="role in roleList">
+              <vs-checkbox v-model="roleIdList" :vs-value="role.id">{{ role.name }}</vs-checkbox>
+            </li>
+           <!-- <li class="op-block">
+              {{ roleIdList }}
+            </li>-->
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex mt-6">
         <div class="vs-lg-2 ml-32">
           <label>备注信息：</label>
         </div>
@@ -101,12 +121,14 @@ export default {
   data() {
     return {
       manager: {
-        state: 2
+        state: 2,
       },
+      roleIdList: [],
       lastTime: 0,
       usernameMsg: "",
       saveType: false,
-      editState: 1
+      editState: 1,
+      roleList: [],
     }
   },
   mounted() {
@@ -121,6 +143,16 @@ export default {
   },
   methods: {
     init() {
+      this.$http.post('/cms/role/getNameidList', {managerId: this.$route.query.id}).then(response => {
+        if (response.code === 10000) {
+          this.roleList = response.data.nameIdList;
+          if (Object.prototype.hasOwnProperty.call(response.data, 'roleIdList') != true) {
+            return;
+          }
+          this.roleIdList = response.data.roleIdList;
+        }
+      });
+
       this.editState = this.$route.query.editState;
       let editState = this.$route.query.editState;
       if (editState == 2) {
@@ -139,8 +171,6 @@ export default {
             text: '请输入完整表单再提交！',
             color: 'danger'
           })
-          this.$router.go(-1);
-
           return;
         }
         let edit = this.$route.query.editState;
@@ -167,6 +197,7 @@ export default {
       });
     },
     update() {
+      this.manager.roleIdList = this.roleIdList;
       this.$http.post('/cms/manager/update', this.manager).then(response => {
         if (response.code === 10000) {
           this.$vs.notify({
@@ -193,9 +224,8 @@ export default {
         clearTimeout(this.lastTime)
         this.lastTime = setTimeout(() => {
           // AJAX(newVal)
-          this.$http.post('/cms/manager/getusername', {username: this.manager.username}).then(response => {
+          this.$http.post('/cms/manager/getUsername', {username: this.manager.username}).then(response => {
             if (response.code === 10000) {
-
               if (response.data == true) {
                 this.usernameMsg = "账号重复,请重新输入账号!";
                 this.saveType = true;
@@ -205,11 +235,11 @@ export default {
               }
             }
           });
-
-
         }, 500)
       }
     }
+
+
   },
 }
 </script>

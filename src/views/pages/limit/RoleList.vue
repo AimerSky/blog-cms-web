@@ -37,6 +37,8 @@
             <div class="flex">
               <vs-button radius color="primary" type="line" icon-pack="feather" size="small"
                          icon="icon-edit-2" @click="editRoleDetail(data[indextr].roleId)"></vs-button>
+              <vs-button radius color="primary" type="line" @click="roleMenu(data[indextr].roleId)"
+                         icon-pack="feather" size="small" icon="icon-menu"></vs-button>
               <vs-button radius color="primary" type="line" @click="openConfirm(data[indextr].roleId)"
                          icon-pack="feather" size="small" icon="icon-x"></vs-button>
             </div>
@@ -98,7 +100,7 @@ export default {
       this.getRoleList();
     },
     deleteRole() {
-      this.$http.post('/cms/role/deletebyid', {
+      this.$http.post('/cms/role/deleteById', {
         roleId: this.deleteRoleId
       }).then(response => {
         if (response.code === 10000) {
@@ -111,6 +113,9 @@ export default {
     },
     editRoleDetail(roleId) {
       this.$router.push({path: '/RoleDetail', query: {editState: '2', id: roleId}});
+    },
+    roleMenu(roleId) {
+      this.$router.push({path: '/RoleMenu', query: {roleId: roleId}});
     },
     openConfirm(roleId) {
       this.deleteRoleId = roleId;

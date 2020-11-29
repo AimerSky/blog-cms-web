@@ -78,6 +78,11 @@ const router = new Router({
           component: () => import('./views/pages/limit/MenuList.vue')
         },
         {
+          path: '/MenuDetail',
+          name: 'menu_detail',
+          component: () => import('./views/pages/limit/MenuDetail.vue')
+        },
+        {
           path: '/ResourceList',
           name: 'resource_list',
           meta: {
@@ -107,6 +112,11 @@ const router = new Router({
           path: '/RoleDetail',
           name: 'role_detail',
           component: () => import('./views/pages/limit/RoleDetail.vue')
+        },
+        {
+          path: '/RoleMenu',
+          name: 'role_menu',
+          component: () => import('./views/pages/limit/RoleMenu.vue')
         },
       ],
     },
