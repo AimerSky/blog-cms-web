@@ -5,7 +5,7 @@ import axios from 'axios'
 // 创建axios实例
 const service = axios.create({
   baseURL: 'http://localhost:9981',
-  timeout: 15000, // 请求超时时间
+  timeout: 50000, // 请求超时时间
 
   // `responseType` 表示服务器响应的数据类型，可以是 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
   responseType: 'json', // 默认的

@@ -118,6 +118,19 @@ const router = new Router({
           name: 'role_menu',
           component: () => import('./views/pages/limit/RoleMenu.vue')
         },
+        {
+          path: '/LearnTestList',
+          name: 'learnTest_list',
+          meta: {
+            breadcrumb: [
+              {title: '首页', url: '/'},
+              {title: '学习小实验', url: '/LearnTestList'},
+              {title: 'LearnTest列表', active: true},
+            ],
+            pageTitle: 'LearnTest列表'
+          },
+          component: () => import('./views/pages/limit/LearnTestList.vue')
+        },
       ],
     },
     // =============================================================================
